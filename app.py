@@ -57,3 +57,8 @@ def create_entry(account, amount, entry_type, partner=None):
         "type": entry_type,
         "partner": partner,
     }
+def post_revenue(amount, partner):
+    return [
+        create_entry(ACCOUNTS["receivable"], amount, "debit", partner),
+        create_entry(ACCOUNTS["revenue"], amount, "credit", partner),
+    ]
