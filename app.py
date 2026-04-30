@@ -62,3 +62,8 @@ def post_revenue(amount, partner):
         create_entry(ACCOUNTS["receivable"], amount, "debit", partner),
         create_entry(ACCOUNTS["revenue"], amount, "credit", partner),
     ]
+def post_expense(amount, partner):
+    return [
+        create_entry(ACCOUNTS["expense"], amount, "debit", partner),
+        create_entry(ACCOUNTS["cash"], amount, "credit", partner),
+    ]
