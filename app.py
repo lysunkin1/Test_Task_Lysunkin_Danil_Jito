@@ -38,3 +38,14 @@ elif menu == "View Transactions":
 
     for t in st.session_state.transactions:
         st.write(t)
+
+ACCOUNTS = {
+    "cash": 1000,
+    "receivable": 1100,
+    "payable": 2000,
+    "revenue": 4000,
+    "expense": 5000,
+}
+
+if "entries" not in st.session_state:
+    st.session_state.entries = []
