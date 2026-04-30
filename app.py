@@ -49,3 +49,11 @@ ACCOUNTS = {
 
 if "entries" not in st.session_state:
     st.session_state.entries = []
+
+def create_entry(account, amount, entry_type, partner=None):
+    return {
+        "account": account,
+        "amount": amount,
+        "type": entry_type,
+        "partner": partner,
+    }
