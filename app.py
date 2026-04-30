@@ -32,3 +32,9 @@ if menu == "Create Transaction":
 
         st.session_state.transactions.append(transaction)
         st.success("Transaction created!")
+
+elif menu == "View Transactions":
+    st.header("Transactions")
+
+    for t in st.session_state.transactions:
+        st.write(t)
