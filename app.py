@@ -6,6 +6,14 @@ if "transactions" not in st.session_state:
 if "entries" not in st.session_state:
     st.session_state.entries = []
 
+ACCOUNTS = {
+    "cash": 1000,
+    "receivable": 1100,
+    "payable": 2000,
+    "revenue": 4000,
+    "expense": 5000,
+}
+
 st.title("Minimal Accounting App")
 
 menu = st.sidebar.selectbox("Menu", ["Create Transaction", "View Transactions", "Reports"])
