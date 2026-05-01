@@ -72,3 +72,51 @@ elif menu == "View Transactions":
 
     for t in st.session_state.transactions:
         st.write(t)
+
+elif menu == "Reports":
+    st.header("Reports")
+
+    # Profit & Loss
+    revenue = sum(
+        e["amount"]
+        for e in st.session_state.entries
+        if e["account"] == ACCOUNTS["revenue"] and e["type"] == "credit"
+    )
+
+    expenses = sum(
+        e["amount"]
+        for e in st.session_state.entries
+        if e["account"] == ACCOUNTS["expense"] and e["type"] == "debit"
+    )
+
+    st.subheader("Profit & Loss")
+    st.write(f"Revenue: {revenue}")
+    st.write(f"Expenses: {expenses}")
+    st.write(f"Profit: {revenue - expenses}")
+
+    # Partner Ledger
+    ledger = {}
+
+    for e in st.session_state.entries:
+        partner = e["partner"]
+        if not partner:
+            continue
+
+        if e["account"] not in [
+            ACCOUNTS["receivable"],
+            ACCOUNTS["payable"],
+        ]:
+            continue
+
+        if partner not in ledger:
+            ledger[partner] = 0
+
+        if e["type"] == "debit":
+            ledger[partner] += e["amount"]
+        else:
+            ledger[partner] -= e["amount"]
+
+    st.subheader("Partner Ledger")
+
+    for partner, balance in ledger.items():
+        st.write(f"{partner}: {balance}")
