@@ -33,7 +33,7 @@ def post_revenue(amount, partner):
 def post_expense(amount, partner):
     return [
         create_entry(ACCOUNTS["expense"], amount, "debit", partner),
-        create_entry(ACCOUNTS["cash"], amount, "credit", partner),
+        create_entry(ACCOUNTS["payable"], amount, "credit", partner),
     ]
 
 st.title("Minimal Accounting App")
