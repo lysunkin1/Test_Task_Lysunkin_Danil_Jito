@@ -1,4 +1,5 @@
 import streamlit as st
+from datetime import datetime
 
 if "transactions" not in st.session_state:
     st.session_state.transactions = []
@@ -54,6 +55,7 @@ if menu == "Create Transaction":
             "type": t_type,
             "amount": amount,
             "partner": partner,
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
         }
 
         st.session_state.transactions.append(transaction)
